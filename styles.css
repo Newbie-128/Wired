@@ -1,0 +1,100 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 90vh; /* ウィンドウ高さの90% */
+}
+
+/* キャンバスのスタイルとグリッド */
+.canvas {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    overflow: auto;
+    width: 80vw; /* ウィンドウ幅の80% */
+    height: 80vh; /* ウィンドウ高さの80% */
+}
+
+.grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 20px 20px; /* グリッド線の間隔を20pxに設定 */
+    background-image: linear-gradient(to right, rgba(204, 204, 204, 0.8) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(204, 204, 204, 0.8) 1px, transparent 1px);
+    pointer-events: none; /* グリッド線がクリックなどの操作に影響しないように */
+    z-index: 10; /* キャンバス上の要素より前面に表示 */
+}
+
+.grid-lines.hidden {
+    display: none;
+}
+
+/* ボタンのスタイル */
+.btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+    margin-right: 8px;
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.btn-primary:active {
+    background-color: #666; /* ボタンを押したときに灰色に変わる */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.08);
+    transform: translateY(2px);
+}
+
+.btn-primary:focus {
+    outline: none;
+}
+
+.btn-secondary {
+    background-color: #9CA3AF;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary:active {
+    background-color: #666;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.08);
+    transform: translateY(2px);
+}
+
+.btn-secondary:focus {
+    outline: none;
+}
+
+/* デバイス編集モーダルのスタイル */
+#deviceModal {
+    display: none;
+}
+
+/* 入力フィールドと出力フィールドの追加ボタンの配置 */
+.input-field, .output-field {
+    display: flex;
+    align-items: center;
+}
+
+.input-field .input-name, .output-field .output-name {
+    flex: 1;
+}
+
+.input-field .add-input-btn, .output-field .add-output-btn {
+    margin-left: 8px;
+}

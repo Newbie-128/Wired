@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>機材配線図作成アプリ</title>
+    <!-- Tailwind CSS の追加 -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Google Fonts の追加 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome の追加 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-roboto bg-gray-100">
+    <div class="container mx-auto my-10">
+        <div class="flex justify-center space-x-6">
+            <!-- デバイス管理パネル -->
+            <div class="w-1/4 bg-white p-4 rounded-lg shadow-md">
+                <h2 class="text-xl font-bold mb-4">デバイス管理</h2>
+                <button id="addDevice" class="btn-primary mb-2">デバイス追加</button>
+                <ul id="deviceList" class="list-disc list-inside">
+                    <!-- デバイスリストがここに表示される -->
+                </ul>
+            </div>
+            <!-- キャンバスとモード切替ボタン -->
+            <div class="w-3/4 flex flex-col items-center">
+                <div class="mb-4">
+                    <button id="toggleGrid" class="btn-primary">Toggle Grid</button>
+                    <button id="freehandMode" class="btn-primary">Freehand Mode</button>
+                    <button id="snapMode" class="btn-primary">Snap Mode</button>
+                </div>
+                <div class="canvas bg-white p-6 rounded-lg shadow-md relative" id="canvas">
+                    <div class="grid-lines"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- デバイス編集モーダル -->
+    <div id="deviceModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-md w-2/3">
+            <h2 class="text-xl font-bold mb-4">デバイス編集</h2>
+            <label class="block mb-2">
+                Name:
+                <input type="text" id="deviceName" class="border p-2 w-full">
+            </label>
+            <label class="block mb-2">
+                大カテゴリ:
+                <select id="deviceMajorCategory" class="border p-2 w-full">
+                    <option value="">Choose...</option>
+                    <option value="撮影">撮影</option>
+                    <option value="音響">音響</option>
+                    <option value="収録配信">収録配信</option>
+                    <option value="メディア・ストレージ">メディア・ストレージ</option>
+                    <option value="モニター">モニター</option>
+                    <option value="PC">PC</option>
+                    <option value="ケーブル">ケーブル</option>
+                </select>
+            </label>
+            <label class="block mb-2">
+                小カテゴリ:
+                <select id="deviceMinorCategory" class="border p-2 w-full">
+                    <option value="">Choose...</option>
+                    <option value="カメラ">カメラ</option>
+                    <option value="レンズ">レンズ</option>
+                    <option value="三脚">三脚</option>
+                    <option value="マイク">マイク</option>
+                    <option value="ミキサー">ミキサー</option>
+                    <option value="スピーカー">スピーカー</option>
+                    <option value="スイッチャー">スイッチャー</option>
+                    <option value="収録機">収録機</option>
+                    <option value="配信機">配信機</option>
+                    <option value="収録メディア">収録メディア</option>
+                    <option value="モニター">モニター</option>
+                    <option value="配信PC">配信PC</option>
+                    <option value="資料PC">資料PC</option>
+                    <option value="映像系">映像系</option>
+                    <option value="音声系">音声系</option>
+                    <option value="その他">その他</option>
+                </select>
+            </label>
+            <label class="block mb-2">
+                Manufacturer:
+                <input type="text" id="deviceManufacturer" class="border p-2 w-full">
+            </label>
+            <label class="block mb-2">
+                Category:
+                <select id="deviceCategory" class="border p-2 w-full">
+                    <option value="">Choose...</option>
+                    <!-- ここにカテゴリを追加 -->
+                </select>
+            </label>
+            <div class="flex mb-2">
+                <div class="w-1/2 pr-2">
+                    <h3 class="text-lg font-bold">Inputs</h3>
+                    <div id="inputsContainer">
+                        <!-- 最初の入力フィールドがここに表示される -->
+                    </div>
+                </div>
+                <div class="w-1/2 pl-2">
+                    <h3 class="text-lg font-bold">Outputs</h3>
+                    <div id="outputsContainer">
+                        <!-- 最初の出力フィールドがここに表示される -->
+                    </div>
+                </div>
+            </div>
+            <label class="block mb-2">
+                Internal Gear ID:
+                <input type="text" id="deviceInternalId" class="border p-2 w-full">
+            </label>
+            <button id="saveDevice" class="btn-primary mr-2">保存</button>
+            <button id="cancelEdit" class="btn-primary">キャンセル</button>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
